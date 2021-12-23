@@ -1,0 +1,43 @@
+.topnav {
+  max-width: 1200px;
+  display: flex;
+  padding: 0 30px;
+  background: #00483d;
+  border-radius: 8px;
+  .nav-item.active {
+    position: relative;
+    color: #fff;
+    display: flex;
+    text-decoration: none;
+    flex-direction: column;
+    margin: 10px 16px 6px 16px;
+    cursor: pointer;
+    .nav-item-icon {
+      text-align: center;
+      font-size: 26px;
+    }
+    .nav-item-name {
+      font-size: 12px;
+      text-transform: uppercase;
+    }
+    &::before {
+      content: "";
+      position: absolute;
+      height: 4px;
+      width: 100%;
+      background: #f7941e;
+      bottom: -4px;
+      border-radius: 2px;
+      display: none;
+    }
+    &:hover {
+      &::before {
+        display: block;
+      }
+    }
+    .sub-container{
+      position: absolute;
+      background: #fff ;
+    }
+  }
+}
