@@ -57,5 +57,23 @@
       border: white 2px solid;
       border-radius: 50%;
     }
+  } 
+}
+.slide-container{
+  margin-top: 30px;
+  border-radius: 8px;
+  border: none;
+  overflow: hidden;
+  .react-slideshow-container .default-nav{
+        margin-right: -30px;
+        position: absolute;
+        right: 230px;
+        width: 40px;
+        height: 40px;
+        &:first-of-type{
+      border-right: 0;
+      border-top: 0;
+      left: 200px;
+        }
   }
 }
