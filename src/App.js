@@ -1,5 +1,6 @@
 import './App.scss';
 import Header from './component/header/header';
+import Body from './component/body/body';
 import {
   BrowserRouter as Router,
   Switch,
@@ -10,6 +11,7 @@ function App() {
     <Router>
     <div className="App">
         <Header />
+        <Body />
     </div>
     </Router>
   );
