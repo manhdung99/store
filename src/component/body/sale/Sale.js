@@ -2,6 +2,7 @@ import React from "react";
 import { useState,useEffect } from "react";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
+import {NavLink } from "react-router-dom";
 import {saleImage1,saleImage2,saleImage3,saleImage4,saleImage5,saleImage6} from '../../../image/index'
 import './sale.scss'
 
@@ -17,44 +18,38 @@ export default function Sale() {
     {
       url: saleImage1,
       name: 'myAlo KS72C - Chính hãng',
-      oldPrice: 14990000,
-      newPrice : 20990000
+      oldPrice: 20990000,
+      newPrice : 14990000
     },
     {
       url: saleImage2,
       name: 'Apple iPhone 12 mini - Chính hãng VN/A',
-      oldPrice: 14990000,
-      newPrice : 14990000
+      oldPrice: 22990000,
+      newPrice : 16990000
     },
     {
       url: saleImage3,
       name:'Apple iPhone 13 Pro Max - Chính hãng VN/A',
-      oldPrice: 14990000,
-      newPrice : 14990000
+      oldPrice: 32990000,
+      newPrice : 28990000
     },
     {
       url: saleImage4,
       name:'Vivo Y15s - Chính hãng',
-      oldPrice: 14990000,
-      newPrice : 14990000
+      oldPrice: 12990000,
+      newPrice : 8990000
     },
     {
       url: saleImage5,
       name:'Apple iPhone 13 - Chính hãng VN/A',
-      oldPrice: 14990000,
+      oldPrice: 18990000,
       newPrice : 14990000
     },
     {
       url: saleImage6,
       name:'Apple iPhone 13 Pro Max - 256GB - Chính hãng VN/A',
-      oldPrice: 14990000,
-      newPrice : 14990000
-    },
-    {
-      url: saleImage6,
-      name:'Apple iPhone 13 Pro Max - 256GB - Chính hãng VN/A',
-      oldPrice: 14990000,
-      newPrice : 14990000
+      oldPrice: 38990000,
+      newPrice : 32990000
     },
   ]) 
   const formatNumber = (num) => {
@@ -143,7 +138,8 @@ export default function Sale() {
     <div className="sale-container">
       <Carousel responsive={responsive}>
       {saleImages.length >0 && saleImages.map((saleImage,index) => (
-        <div className="sale-product" key={index} >
+        <NavLink className='sale-product-link' to="#">
+          <div className="sale-product" key={index} >
           <img src={saleImage.url} className='sale-img' alt="sale-img"  />
           <p className="sale-product-name">{saleImage.name}</p>
           <div className="sale-product-price">
@@ -151,6 +147,7 @@ export default function Sale() {
           <p className="sale-product-old-price">{formatNumber(saleImage.oldPrice)} đ</p>
           </div>
         </div>
+        </NavLink>
       ))}
       </Carousel>
     </div>
