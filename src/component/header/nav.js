@@ -2,6 +2,7 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 import "./nav.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { useEffect,useRef } from "react";
 import {
   faMobileAlt,
   faLaptop,
@@ -15,8 +16,24 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 
 export default function Nav() {
+
+  const navRef = useRef()
+
+  useEffect ( () => {
+    const handleScroll = () => {
+      if(window.scrollY >= 165){
+        navRef.current.classList.add('scrool-to-fixed');
+      }else{
+        navRef.current.classList.remove('scrool-to-fixed');
+      }
+    }
+    window.addEventListener('scroll',handleScroll)
+  },[])
+
+
   return (
-    <div className="topnav">
+    <div ref={navRef} className="topnav">
+      <div className="nav-list">
       <NavLink className="nav-item" to="">
         <span className="nav-item-icon">
           <FontAwesomeIcon icon={faMobileAlt} />
@@ -184,6 +201,7 @@ export default function Nav() {
         </span>
         <span className="nav-item-name">CT khuyến mãi</span>
       </NavLink>
+      </div>
     </div>
   );
 }

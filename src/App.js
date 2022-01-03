@@ -3,8 +3,6 @@ import Header from './component/header/header';
 import Body from './component/body/body';
 import {
   BrowserRouter as Router,
-  Switch,
-  Route,
 } from "react-router-dom";
 function App() {
   return (

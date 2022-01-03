@@ -3,7 +3,7 @@ import { useState,useEffect } from "react";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import {NavLink } from "react-router-dom";
-import {saleImage1,saleImage2,saleImage3,saleImage4,saleImage5,saleImage6} from '../../../image/index'
+import {saleImage1,iphone12mini,iphone13promax,saleImage4,iphone13,iphone13promax256} from '../../../image/index'
 import './sale.scss'
 
 export default function Sale() {
@@ -22,13 +22,13 @@ export default function Sale() {
       newPrice : 14990000
     },
     {
-      url: saleImage2,
+      url: iphone12mini,
       name: 'Apple iPhone 12 mini - Chính hãng VN/A',
       oldPrice: 22990000,
       newPrice : 16990000
     },
     {
-      url: saleImage3,
+      url: iphone13promax,
       name:'Apple iPhone 13 Pro Max - Chính hãng VN/A',
       oldPrice: 32990000,
       newPrice : 28990000
@@ -40,13 +40,13 @@ export default function Sale() {
       newPrice : 8990000
     },
     {
-      url: saleImage5,
+      url: iphone13,
       name:'Apple iPhone 13 - Chính hãng VN/A',
       oldPrice: 18990000,
       newPrice : 14990000
     },
     {
-      url: saleImage6,
+      url: iphone13promax256,
       name:'Apple iPhone 13 Pro Max - 256GB - Chính hãng VN/A',
       oldPrice: 38990000,
       newPrice : 32990000
@@ -80,7 +80,6 @@ export default function Sale() {
 
     const timerId = setTimeout(()=>{
       setSecondLast(secondLast - 1)
-      console.log('render');
     },1000)
     if(total === 0){
     } 
@@ -117,6 +116,7 @@ export default function Sale() {
       setSecondLast(9)   
       clearTimeout(timerId)
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   },[secondLast])
   return (
     <>
@@ -138,8 +138,8 @@ export default function Sale() {
     <div className="sale-container">
       <Carousel responsive={responsive}>
       {saleImages.length >0 && saleImages.map((saleImage,index) => (
-        <NavLink className='sale-product-link' to="#">
-          <div className="sale-product" key={index} >
+        <NavLink key={index} title={saleImage.name} className='sale-product-link' to="#">
+          <div className="sale-product"  >
           <img src={saleImage.url} className='sale-img' alt="sale-img"  />
           <p className="sale-product-name">{saleImage.name}</p>
           <div className="sale-product-price">

@@ -2,11 +2,12 @@
   display: flex;
   width: 100%;
   align-items: center;
+  margin: 20px 0;
   .logo-wrap {
     flex: 2.5;
     .logo-img {
       width: 172px;
-      height: 90px;
+      height: 40px;
     }
   }
   .search-content {
