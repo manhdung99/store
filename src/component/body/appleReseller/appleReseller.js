@@ -130,7 +130,7 @@ export default function AppleReseller() {
       <div className="home-product-body">
         <div className="product-list">
         {appleProducts.map((appleProduct,index)=>(
-            <div className="product-item">
+            <div className="product-item" key={index}>
                 <Link to= "" >
             <img src={appleProduct.url} className="product-item-img" alt="" />
                 </Link>
