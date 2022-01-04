@@ -139,6 +139,7 @@ export default function DetailPage() {
       
       const handleUpdatePrice = (id) =>{
         setColor(versionsColor[id-1])
+        setCurrentPrice(versionsColor[id-1][0].price)
       }
       useEffect(()=>{
           inputVersionRef.current[0].checked = true;
