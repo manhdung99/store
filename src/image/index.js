@@ -15,4 +15,9 @@ export const iphone13promax256 = require('./sale-image6.png').default
 export const apple = require('./apple.png').default
 export const giaSoc = require('./gia-soc.png').default
 export const iphone11 = require('./iphone-11.png').default
+export const previewImage1 = require('./preview-image-1.png').default
+export const previewImage2 = require('./preview-image-2.png').default
+export const previewImage3 = require('./preview-image-3.png').default
+export const previewImage4 = require('./preview-image-4.png').default
+export const textImage = require('./text-image.jpg').default
 

@@ -1,16 +1,23 @@
-import './App.scss';
-import Header from './component/header/header';
-import Body from './component/body/body';
+import DetailPage from './component/detail/detailPage';
+import HomePage from './component/HomePage';
 import {
   BrowserRouter as Router,
+  Switch,
+  Route,
 } from "react-router-dom";
 function App() {
   return (
     <Router>
-    <div className="App">
-        <Header />
-        <Body />
-    </div>
+    {/* <div className="App">
+    </div> */}
+    <Switch>
+          <Route path="/store" exact >
+            <HomePage />
+          </Route>
+          <Route path="/store/:id" exact >
+            <DetailPage />
+          </Route>
+          </Switch>
     </Router>
   );
 }
