@@ -8,12 +8,9 @@ import './sale.scss'
 
 export default function Sale() {
 
-  const [secondLast,setSecondLast] = useState(3)
-  const [secondFirst,setSecondFirst] = useState(1)
-  const [minuteFirst,setMinuteFirst] = useState(1)
-  const [minuteLast,setMinuteLast] = useState(1)
-  const [hourFirst,setHourFirst] = useState(1)
-  const [hourLast,setHourLast] = useState(2)
+  const [second,setSecond] = useState(3)
+  const [minute,setMinute] = useState(0)
+  const [hour,setHour] = useState(1)
   const [saleImages,setSaleImages] =useState([
     {
       url: saleImage1,
@@ -76,63 +73,39 @@ export default function Sale() {
   };
 
   useEffect(()=>{
-    let total = secondFirst + secondLast +minuteLast+minuteFirst+hourLast+hourFirst
 
     const timerId = setTimeout(()=>{
-      setSecondLast(secondLast - 1)
+      setSecond(second - 1)
     },1000)
-    if(total === 0){
-    } 
-    if(secondFirst === 0 && secondLast === 0 && minuteLast ===0 && minuteFirst ===0 && hourLast ===0){
-      setHourFirst(hourFirst - 1)
+    if(second === 0  && minute ===0){
+        setHour(hour - 1)
     }
-    if(secondFirst === 0 && secondLast === 0 && minuteLast ===0 && minuteFirst ===0){
-      if(hourLast === 0){
-        setHourLast(4)
+    if(second === 0){
+      if(minute ===0){
+      setMinute(59)
       }else{
-        setHourLast(hourLast-1)
+        setMinute(minute-1)
       }
-    }
-    if(secondFirst === 0 && secondLast === 0 && minuteLast ===0){
-      if(minuteFirst === 0){
-        setMinuteFirst(5)
-      }else{
-        setMinuteFirst(minuteFirst-1)
-      }
-    }
-    if(secondFirst === 0 && secondLast === 0){
-      if(minuteLast === 0 ){
-        setMinuteLast(9)
-      }else{
-        setMinuteLast(minuteLast-1)
-      }
-    }
-    if(secondLast === 0){
-      if(secondFirst ===0 ){
-        setSecondFirst(5)
-      }else{
-        setSecondFirst(secondFirst -1)
-      }
-      setSecondLast(9)   
+      setSecond(59)   
       clearTimeout(timerId)
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  },[secondLast])
+  },[second])
   return (
     <>
-    {hourFirst >= 0  && 
+    {hour >= 0  && 
     <div className="sale-content">   
       <div className="sale-header">
       <p className="sale-title">Flash sale online</p>
       <div className="time-sale">
-        <strong className="time-item">{hourFirst}</strong>
-        <strong className="time-item">{hourLast}</strong>
+        <strong className="time-item">{Math.floor(hour /10)}</strong>
+        <strong className="time-item">{hour % 10}</strong>
         <span>:</span>
-        <strong className="time-item">{minuteFirst}</strong>
-        <strong className="time-item">{minuteLast}</strong>
+        <strong className="time-item">{Math.floor(minute /10)}</strong>
+        <strong className="time-item">{minute%10}</strong>
         <span>:</span>
-        <strong className="time-item">{secondFirst}</strong>
-        <strong className="time-item">{secondLast}</strong>
+        <strong className="time-item">{Math.floor(second /10)}</strong>
+        <strong className="time-item">{second%10}</strong>
       </div>
       </div>
     <div className="sale-container">
