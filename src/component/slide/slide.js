@@ -26,7 +26,7 @@ export default function SlideShow() {
         <Slide>
          {slideImages.map((slideImage, index)=> (
             <div className="each-slide" key={index}>
-            <Link to ={"/store/"+slideImage.id}><img style={{width: 1200, height: 400}} className='slide-img' src={slideImage.url} alt="logo" /></Link>
+            <Link to ={"/store/product/"+slideImage.id}><img style={{width: 1200, height: 400}} className='slide-img' src={slideImage.url} alt="logo" /></Link>
             </div>
           ))} 
         </Slide>

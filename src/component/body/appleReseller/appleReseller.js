@@ -32,8 +32,7 @@ export default function AppleReseller() {
         url: iphone12mini,
         name: "Apple iPhone 12 mini - 64GB - Chính hãng VN/A",
         content: "Giảm thêm tới 1.500.000đ khi Thu cũ - Lên đời iPhone 13 Series",
-        oldPrice: 16990000,
-        newPrice: 11990000,
+        price:13999000,
         promotion: [
           " Giảm thêm tới 1.500.000đ khi Thu cũ - Lên đời iPhone 13 Series",
           " Tặng sim data Mobifone Hera 5G (2.5GB/ngày) ( Chưa bao gồm tháng đầu tiên)- Lưu ý: chỉ mua trực tiếp tại cửa hàng, không áp dụng shop SIS Hà Nội",
@@ -65,8 +64,7 @@ export default function AppleReseller() {
         url: iphone11,
         name: "Apple iPhone 11 - 64GB - Chính hãng VN/A",
         content: "Giảm thêm tới 1.500.000đ khi Thu cũ - Lên đời iPhone 13 Series",
-        oldPrice: 19990000,
-        newPrice: 13990000,
+        price:13999000,
         promotion: [
           " Giảm thêm tới 1.500.000đ khi Thu cũ - Lên đời iPhone 13 Series",
           " Tặng sim data Mobifone Hera 5G (2.5GB/ngày) ( Chưa bao gồm tháng đầu tiên)- Lưu ý: chỉ mua trực tiếp tại cửa hàng, không áp dụng shop SIS Hà Nội",
@@ -87,8 +85,7 @@ export default function AppleReseller() {
           url: iphone12mini,
           name: "Apple iPhone 12 mini - 64GB - Chính hãng VN/A",
           content: "Giảm thêm tới 1.500.000đ khi Thu cũ - Lên đời iPhone 13 Series",
-          oldPrice: 16990000,
-          newPrice: 11990000,
+          price:11999000,
           promotion: [
             " Giảm thêm tới 1.500.000đ khi Thu cũ - Lên đời iPhone 13 Series",
             " Tặng sim data Mobifone Hera 5G (2.5GB/ngày) ( Chưa bao gồm tháng đầu tiên)- Lưu ý: chỉ mua trực tiếp tại cửa hàng, không áp dụng shop SIS Hà Nội",
@@ -131,18 +128,26 @@ export default function AppleReseller() {
         <div className="product-list">
         {appleProducts.map((appleProduct,index)=>(
             <div className="product-item" key={index}>
-                <Link to= {"/store/" + index} >
+                <Link to= {"/store/product/" + index} >
             <img src={appleProduct.url} className="product-item-img" alt="" />
                 </Link>
-            <Link to={"/store/" + index} className="product-item-link">
+            <Link to={"/store/product/" + index} className="product-item-link">
               <p className="product-item-name">
                {appleProduct.name}
               </p>
             </Link>
+              {appleProduct?.price ? 
             <div className="product-item-price">
-              <p className="product-item-new-price">{formatNumber(appleProduct.newPrice)} đ</p>
-              <p className="product-item-old-price">{formatNumber(appleProduct.oldPrice)} đ</p>
+                  <p className="product-item-new-price">{formatNumber(appleProduct.price)} đ</p>
             </div>
+            :
+            <div className="product-item-price">
+            <p className="product-item-new-price">{formatNumber(appleProduct.newPrice)} đ</p>
+              <p className="product-item-old-price">{formatNumber(appleProduct.oldPrice)} đ</p>
+              </div>
+            }
+              {/* <p className="product-item-new-price">{formatNumber(appleProduct.newPrice)} đ</p>
+              <p className="product-item-old-price">{formatNumber(appleProduct.oldPrice)} đ</p> */}
             <div className="product-item-note">
               <span className="bag">KM</span>
               <label

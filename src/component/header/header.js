@@ -5,8 +5,10 @@ import {faSearch,faShoppingCart} from '@fortawesome/free-solid-svg-icons'
 import Nav from './nav'
 import 'react-slideshow-image/dist/styles.css'
 import './header.scss'
+import { Link } from 'react-router-dom'
+import { connect } from "react-redux";
 
-export default function Header() {
+const Header = ({cartItems}) => {
     return (
         <div className='header'>
         <div className='container'>
@@ -19,14 +21,25 @@ export default function Header() {
                     <FontAwesomeIcon  icon={faSearch} />
                 </span>
             </div>
+            <Link to="/store/cart">
             <div className='cart-wrap'>
                 <span className='cart-icon'>
                     <FontAwesomeIcon icon={faShoppingCart} />
                 </span>
-                    <span className='cart-notice'>2</span>
+                 {cartItems.length > 0 &&   <span className='cart-notice'>{cartItems.length}</span> }
             </div>
+            </Link>
         </div>
         <Nav />
         </div>
     )
 }
+
+const mapStateToProps = (state) => {
+    return {
+      cartItems: state.cartItems
+    };
+  };
+
+
+export default connect(mapStateToProps, null)(Header);

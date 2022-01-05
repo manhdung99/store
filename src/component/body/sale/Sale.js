@@ -111,7 +111,7 @@ export default function Sale() {
     <div className="sale-container">
       <Carousel responsive={responsive}>
       {saleImages.length >0 && saleImages.map((saleImage,index) => (
-        <NavLink key={index} title={saleImage.name} className='sale-product-link' to={"/store/"+(index+1)}>
+        <NavLink key={index} title={saleImage.name} className='sale-product-link' to={"/store/product/"+(index+1)}>
           <div className="sale-product"  >
           <img src={saleImage.url} className='sale-img' alt="sale-img"  />
           <p className="sale-product-name">{saleImage.name}</p>

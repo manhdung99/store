@@ -48,7 +48,6 @@
     display: flex;
     .slide-container {
       &.detail {
-        margin-top: -30px;
         margin-right: 24px;
         border-radius: 8px;
         border: none;
@@ -187,6 +186,8 @@
           padding: 4px 12px;
           border-radius: 4px;
           position: relative;
+          border: none;
+          cursor: pointer;
           & svg {
             color: #fff;
             font-size: 16px;

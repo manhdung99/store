@@ -1,5 +1,6 @@
 import DetailPage from './component/detail/detailPage';
 import HomePage from './component/HomePage';
+import ListCart from './component/cart/listCart';
 import {
   BrowserRouter as Router,
   Switch,
@@ -14,9 +15,13 @@ function App() {
           <Route path="/store" exact >
             <HomePage />
           </Route>
-          <Route path="/store/:id" exact >
+          <Route path="/store/cart" exact >
+            <ListCart />
+          </Route>
+          <Route path="/store/product/:id" >
             <DetailPage />
           </Route>
+          
           </Switch>
     </Router>
   );
