@@ -223,9 +223,7 @@ const DetailPage = ({addCart}) => {
         colorNumber =i+2;
       }
     }
-
     product.id = versionNumber*7 + colorNumber*3;
-    
   })
   
   const handleAddCart = () => {

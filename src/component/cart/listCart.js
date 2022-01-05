@@ -7,11 +7,10 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import {useEffect,useState} from 'react'
 import { faCheckCircle as faCheck } from "@fortawesome/fontawesome-free-regular";
-import { iphone13promax } from "../../image/index";
 import "./listCart.scss";
 import { connect } from "react-redux";
 
-const ListCart = ({cartItems,updateCart}) => {
+const ListCart = ({cartItems,updateCart,deleteCart}) => {
     const [totalPrice,setTotalPrice] = useState(0);
     const formatNumber = (num) => {
         return num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,");
@@ -25,7 +24,7 @@ const ListCart = ({cartItems,updateCart}) => {
          let total = cartItems.reduce(totalPrice,0);
          setTotalPrice(total)
     },[cartItems])
-
+    
 
   return (
     <div className="cart">
@@ -44,8 +43,8 @@ const ListCart = ({cartItems,updateCart}) => {
           <div className="cart-list">
               {cartItems.length >0 && cartItems.map((cart)=>(
                   <div key={cart.id} className="cart-item">
-                  <span className="delete-item">
-                    <FontAwesomeIcon icon={faMinusCircle} />
+                  <span onClick={()=> deleteCart(cart.id)} className="delete-item">
+                    <FontAwesomeIcon icon={faMinusCircle}  />
                   </span>
                   <div className="cart-item-img-wrap">
                     <img className="cart-item-img" src={cart.url} alt="" />
@@ -157,6 +156,7 @@ const mapStateToProps = (state) => {
     return {
       getListCart: () => dispatch({ type: "ADD_CART" }),
       updateCart: (cartItem) => dispatch({ type: "UPDATE_CART",payload : cartItem}),
+      deleteCart: (id) => dispatch({ type: "DELETE_CART",payload : id}),
     };
   };
 
