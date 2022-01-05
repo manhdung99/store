@@ -13,7 +13,7 @@ const Header = ({cartItems}) => {
         <div className='header'>
         <div className='container'>
             <div className='logo-wrap'>
-            <img className='logo-img' src = {logo} alt= "logo"/>
+            <Link to="/store/"><img className='logo-img' src = {logo} alt= "logo"/></Link>
             </div>
             <div className='search-content'>
                 <input className='search-input' type= 'text' placeholder='Bạn muốn tìm gì?' />

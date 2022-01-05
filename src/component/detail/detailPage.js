@@ -202,7 +202,7 @@ const DetailPage = ({addCart}) => {
     setCurrentPrice(versionsColor[id - 1][0].price);
   };
   const handleUpdateCurrentPrice = (price) =>{
-    setColor(colors);
+    setCurrentPrice(price)
   }
   useEffect(() => {
     inputVersionRef.current[0].checked = true;
@@ -229,7 +229,7 @@ const DetailPage = ({addCart}) => {
   const handleAddCart = () => {
     addCart({
       id: product.id,
-      price: currentPrice >0 ? currentPrice : versions[0].price,
+      price: currentPrice > 0 ? currentPrice : versions[0].price,
       productName: product.productName,
       url: "http://localhost:3000" + previewImage1,
       promotion:promotions,
@@ -243,7 +243,7 @@ const DetailPage = ({addCart}) => {
       <Header />
       <Social />
       <ul className="heading-item-link">
-        <Link className="item-element-link" to="">
+        <Link className="item-element-link" to="/store/">
           <li className="item-element">
             <span className="home-icon">
               <FontAwesomeIcon icon={faHome} />

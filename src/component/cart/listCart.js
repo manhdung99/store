@@ -9,12 +9,16 @@ import {useEffect,useState} from 'react'
 import { faCheckCircle as faCheck } from "@fortawesome/fontawesome-free-regular";
 import "./listCart.scss";
 import { connect } from "react-redux";
+import { Link } from "react-router-dom";
+import {useHistory} from "react-router-dom";
+import Header from "../header/header"
 
 const ListCart = ({cartItems,updateCart,deleteCart}) => {
     const [totalPrice,setTotalPrice] = useState(0);
     const formatNumber = (num) => {
         return num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,");
       };
+      const history = useHistory();
     useEffect(()=>{
         
         const totalPrice = (accumulator,curentValue) =>{
@@ -27,8 +31,9 @@ const ListCart = ({cartItems,updateCart,deleteCart}) => {
     
 
   return (
-    <div className="cart">
-      <div className="back">
+      <div className="cart">
+        <Header />
+      <div onClick={() => history.goBack()} className="back">
         <FontAwesomeIcon icon={faChevronLeft} />
         Quay lại
       </div>

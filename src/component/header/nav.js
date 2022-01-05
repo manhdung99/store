@@ -19,17 +19,18 @@ export default function Nav() {
 
   const navRef = useRef()
 
-  useEffect ( () => {
-    const handleScroll = () => {
-      if(window.scrollY >= 165){
-        navRef.current.classList.add('scrool-to-fixed');
-      }else{
-        navRef.current.classList.remove('scrool-to-fixed');
-      }
-    }
-    window.addEventListener('scroll',handleScroll)
-  },[])
-
+  // useEffect (() => {
+  //   const handleScroll = () => {
+  //     if(window.scrollY >= 165){
+  //       console.log(navRef.current.classList);
+  //       navRef.current.classList.add('scrool-to-fixed');
+  //     }else{
+  //       console.log(navRef.current.classList);
+  //       navRef.current.classList.remove('scrool-to-fixed');
+  //     }
+  //   }
+  //   window.addEventListener('scroll',handleScroll)
+  // },[])
 
   return (
     <div ref={navRef} className="topnav">

@@ -89,6 +89,9 @@ export default function Sale() {
       setSecond(59)   
       clearTimeout(timerId)
     }
+
+     return () => clearTimeout(timerId)
+    
     // eslint-disable-next-line react-hooks/exhaustive-deps
   },[second])
   return (
