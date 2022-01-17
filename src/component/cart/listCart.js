@@ -9,7 +9,6 @@ import {useEffect,useState} from 'react'
 import { faCheckCircle as faCheck } from "@fortawesome/fontawesome-free-regular";
 import "./listCart.scss";
 import { connect } from "react-redux";
-import { Link } from "react-router-dom";
 import {useHistory} from "react-router-dom";
 import Header from "../header/header"
 

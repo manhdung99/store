@@ -15,10 +15,16 @@ const initState = {
       url: "http://localhost:3000/store/static/media/preview-image-1.e5eed755.png",
     },
   ],
+  isLogin : false
 };
 
 const cartReducer = (state = initState, action) => {
   switch (action.type) {
+    case "UPDATE_LOGIN":
+      return {
+        ...state,
+        isLogin: action.payload,
+      }
     case "LIST_CART":
       return {
         ...state,

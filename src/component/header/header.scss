@@ -4,7 +4,7 @@
   align-items: center;
   margin: 20px 0;
   .logo-wrap {
-    flex: 2.5;
+    flex: 2;
     .logo-img {
       width: 172px;
       height: 40px;
@@ -36,6 +36,16 @@
       color: white;
       border-radius: 16px;
     }
+  }
+  .login-btn{
+    margin-right: 48px;
+    color: #00483d;
+    cursor: pointer;
+    font-weight: bold;
+    &:hover{
+      opacity: 0.9;
+    }
+
   }
   .cart-wrap {
     flex: 2;

@@ -2,7 +2,7 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 import "./nav.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useEffect,useRef } from "react";
+import { useRef } from "react";
 import {
   faMobileAlt,
   faLaptop,
@@ -19,18 +19,6 @@ export default function Nav() {
 
   const navRef = useRef()
 
-  // useEffect (() => {
-  //   const handleScroll = () => {
-  //     if(window.scrollY >= 165){
-  //       console.log(navRef.current.classList);
-  //       navRef.current.classList.add('scrool-to-fixed');
-  //     }else{
-  //       console.log(navRef.current.classList);
-  //       navRef.current.classList.remove('scrool-to-fixed');
-  //     }
-  //   }
-  //   window.addEventListener('scroll',handleScroll)
-  // },[])
 
   return (
     <div ref={navRef} className="topnav">

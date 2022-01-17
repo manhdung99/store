@@ -1,6 +1,7 @@
 import DetailPage from './component/detail/detailPage';
 import HomePage from './component/HomePage';
 import ListCart from './component/cart/listCart';
+import LoginPage from './component/login/LoginPage';
 import {
   BrowserRouter as Router,
   Switch,
@@ -21,7 +22,9 @@ function App() {
           <Route path="/store/product/:id" >
             <DetailPage />
           </Route>
-          
+          <Route path="/store/login" >
+            <LoginPage />
+          </Route>
           </Switch>
     </Router>
   );
