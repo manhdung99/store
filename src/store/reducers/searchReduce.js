@@ -120,9 +120,11 @@ const initState = {
           let newData = initState.items.map((item) =>{
             return item.name.includes(action.payload) ? item : null ;
           })
+          let newItems = [...newData];
+                newItems = newItems.filter(newCartItem => newCartItem !== null)
         return {
           ...state,
-          searchItems: newData,
+          searchItems: newItems,
         }
       default:
         return state;
