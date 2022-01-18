@@ -153,7 +153,7 @@ const ListCart = ({cartItems,updateCart,deleteCart}) => {
 }
 const mapStateToProps = (state) => {
     return {
-      cartItems: state.cartItems
+      cartItems: state.cartReducer.cartItems
     };
   };
   const mapDispatchToProps = (dispatch) => {

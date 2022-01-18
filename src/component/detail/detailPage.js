@@ -232,7 +232,7 @@ const DetailPage = ({addCart}) => {
       id: product.id,
       price: currentPrice > 0 ? currentPrice : versions[0].price,
       productName: product.productName,
-      url: "http://localhost:3000" + previewImage1,
+      url: previewImage1,
       promotion:promotions,
       color:colorProduct,
       memory : versionProduct,

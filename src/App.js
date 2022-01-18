@@ -2,18 +2,15 @@ import DetailPage from './component/detail/detailPage';
 import HomePage from './component/HomePage';
 import ListCart from './component/cart/listCart';
 import LoginPage from './component/login/LoginPage';
+import SearchPage from './component/searchPage/searchPage';
 import {
   BrowserRouter as Router,
   Switch,
   Route,
 } from "react-router-dom";
 function App() {
-
-  console.log(process.env.REACT_APP_IS_LOGIN);
   return (
     <Router>
-    {/* <div className="App">
-    </div> */}
     <Switch>
           <Route path="/store" exact >
             <HomePage />
@@ -27,6 +24,9 @@ function App() {
           <Route path="/store/login" >
             <LoginPage />
           </Route>
+          <Route path="/store/search" >
+            <SearchPage />
+          </Route> 
           </Switch>
     </Router>
   );

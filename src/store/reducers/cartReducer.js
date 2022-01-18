@@ -32,7 +32,7 @@ const cartReducer = (state = initState, action) => {
         let objIndex = newCartItems.findIndex(
           (obj) => obj.id === action.payload.id
         );
-        if(objIndex >0 ){
+        if(objIndex >=0 ){
           newCartItems[objIndex] = {...newCartItems[objIndex],count : newCartItems[objIndex].count +1 };
         }else{
           newCartItems = [...state.cartItems, action.payload];

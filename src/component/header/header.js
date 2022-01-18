@@ -7,11 +7,11 @@ import 'react-slideshow-image/dist/styles.css'
 import './header.scss'
 import { Link,useHistory } from 'react-router-dom'
 import { connect } from "react-redux";
-import { useEffect } from 'react'
+import { useEffect,useState } from 'react'
 
-const Header = ({cartItems,isLogin,updateIsLogin}) => {
+const Header = ({cartItems,isLogin,updateIsLogin,updateSearchItem}) => {
     
-
+    const [inputValue,setInputValue] = useState('')
     const history = useHistory()
     useEffect(()=>{
         if(isLogin === false){
@@ -19,12 +19,16 @@ const Header = ({cartItems,isLogin,updateIsLogin}) => {
         }
     // eslint-disable-next-line react-hooks/exhaustive-deps
     },[])
-
     const handleUpdateLogin = () => {
             if(isLogin === true){
                 localStorage.setItem('isLogin',false)
                 updateIsLogin(false);
             }
+    }
+
+    const handleSearchItem = () =>{
+        updateSearchItem(inputValue);
+        history.push('/store/search')
     }
 
     return (
@@ -34,8 +38,12 @@ const Header = ({cartItems,isLogin,updateIsLogin}) => {
             <Link to="/store/"><img className='logo-img' src = {logo} alt= "logo"/></Link>
             </div>
             <div className='search-content'>
-                <input className='search-input' type= 'text' placeholder='Bạn muốn tìm gì?' />
-                <span className='search-icon'>
+                <input className='search-input' value={inputValue}
+                onChange={(e) => setInputValue(e.target.value)}
+                type= 'text' placeholder='Tìm kiếm theo tên sản phẩm' />
+                <span
+                onClick={()=>handleSearchItem()}
+                className='search-icon'>
                     <FontAwesomeIcon  icon={faSearch} />
                 </span>
             </div>
@@ -58,14 +66,15 @@ const Header = ({cartItems,isLogin,updateIsLogin}) => {
 
 const mapStateToProps = (state) => {
     return {
-      cartItems: state.cartItems,
-      isLogin : state.isLogin
+      cartItems: state.cartReducer.cartItems,
+      isLogin : state.cartReducer.isLogin
     };
   };
 
   const mapDispatchToProps  = (dispatch) =>{
     return {
-        updateIsLogin : (value) => dispatch({type:'UPDATE_LOGIN',payload:value})
+        updateIsLogin : (value) => dispatch({type:'UPDATE_LOGIN',payload:value}),
+        updateSearchItem : (value) => dispatch({type:'SEARCH',payload:value})
     }
 }
 

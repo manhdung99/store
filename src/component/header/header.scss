@@ -24,6 +24,7 @@
       font-weight: 700;
       font-size: 16px;
       letter-spacing: 0.5px;
+      outline: none;
     }
     .search-icon {
       transform: translateY(-50%);
@@ -35,6 +36,7 @@
       background: #00483d;
       color: white;
       border-radius: 16px;
+      cursor: pointer;
     }
   }
   .login-btn{
