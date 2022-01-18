@@ -43,6 +43,7 @@ import {faEye,faEyeSlash} from '@fortawesome/free-solid-svg-icons'
         if(accout.password !== '' && accout.username !== ''){
             if(accout.username === userAccout.username && accout.password === userAccout.password){
                updateIsLogin(true)
+               localStorage.setItem('isLogin','true')
                history.push('/store/')
            }else{
                setError(true)

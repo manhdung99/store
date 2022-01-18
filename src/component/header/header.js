@@ -22,6 +22,7 @@ const Header = ({cartItems,isLogin,updateIsLogin}) => {
 
     const handleUpdateLogin = () => {
             if(isLogin === true){
+                localStorage.setItem('isLogin',false)
                 updateIsLogin(false);
             }
     }

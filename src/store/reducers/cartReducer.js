@@ -2,7 +2,7 @@ const initState = {
   cartItems: [
   
   ],
-  isLogin : false
+  isLogin: localStorage.getItem('isLogin') === 'false' ? false : true,
 };
 
 const cartReducer = (state = initState, action) => {

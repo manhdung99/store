@@ -8,6 +8,8 @@ import {
   Route,
 } from "react-router-dom";
 function App() {
+
+  console.log(process.env.REACT_APP_IS_LOGIN);
   return (
     <Router>
     {/* <div className="App">
