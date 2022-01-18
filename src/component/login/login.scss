@@ -42,13 +42,14 @@
         .login-invalid {
           color: red;
           font-size: 13px;
+          position: absolute;
         }
         .showPassIcon,
         .hidePassIcon {
           cursor: pointer;
           position: absolute;
           right: 8px;
-          bottom: 8px;
+          top: 50%;
         }
         .hidePassIcon {
           display: none;
