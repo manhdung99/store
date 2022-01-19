@@ -118,11 +118,12 @@ const initState = {
     switch (action.type) {
       case "SEARCH":
         let newData;
+        let searchValue = action.payload.toUpperCase();
         if(action.payload === ''){
           newData = [];
         }else{
           newData = initState.items.map((item) =>{
-            return item.name.includes(action.payload) ? item : null ;
+            return item.name.toUpperCase().includes(searchValue) ? item : null ;
           })
         }
           let newItems = [...newData];
