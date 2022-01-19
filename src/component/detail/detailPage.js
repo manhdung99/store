@@ -35,6 +35,10 @@ const DetailPage = ({addCart,detailItem}) => {
     inputVersionRef.current[0].checked = true;
     inputColorRef.current[0].checked = true;
     setCurrentPrice(detailItem.versions[0].price)
+    window.scroll({
+      top: 0,
+      behavior: 'smooth'
+    });
   },[detailItem])
 
   const citys = [
