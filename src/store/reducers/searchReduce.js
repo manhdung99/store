@@ -117,9 +117,14 @@ const initState = {
   const searchReducer = (state = initState, action) => {
     switch (action.type) {
       case "SEARCH":
-          let newData = initState.items.map((item) =>{
+        let newData;
+        if(action.payload === ''){
+          newData = [];
+        }else{
+          newData = initState.items.map((item) =>{
             return item.name.includes(action.payload) ? item : null ;
           })
+        }
           let newItems = [...newData];
                 newItems = newItems.filter(newCartItem => newCartItem !== null)
         return {

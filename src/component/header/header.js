@@ -9,7 +9,7 @@ import { Link,useHistory } from 'react-router-dom'
 import { connect } from "react-redux";
 import { useEffect,useState } from 'react'
 
-const Header = ({cartItems,isLogin,updateIsLogin,updateSearchItem}) => {
+const Header = ({cartItems,isLogin,updateIsLogin,updateSearchItem,searchItems}) => {
     
     const [inputValue,setInputValue] = useState('')
     const history = useHistory()
@@ -25,12 +25,19 @@ const Header = ({cartItems,isLogin,updateIsLogin,updateSearchItem}) => {
                 updateIsLogin(false);
             }
     }
+    const handleUpdateValue = (e) =>{
+        setInputValue(e.target.value)
+        updateSearchItem(e.target.value)
+    }
 
     const handleSearchItem = () =>{
         updateSearchItem(inputValue);
-        history.push('/store/search')
+        history.push('/store/search') 
     }
 
+    const formatNumber = (num) => {
+        return num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,");
+      };
     return (
         <div className='header'>
         <div className='container'>
@@ -39,8 +46,23 @@ const Header = ({cartItems,isLogin,updateIsLogin,updateSearchItem}) => {
             </div>
             <div className='search-content'>
                 <input className='search-input' value={inputValue}
-                onChange={(e) => setInputValue(e.target.value)}
+                onChange={(e) => handleUpdateValue(e)}
                 type= 'text' placeholder='Tìm kiếm theo tên sản phẩm' />
+                {searchItems.length > 0 &&
+                <div className='search-items'>
+                    <ul className='search-list'>
+                        {searchItems.map((item,index)=>(
+                            <li key={index} className='search-item'>
+                            <img src='https://hoanghamobile.com/productlist/dst/Uploads/2020/12/15/image-removebg-preview.png' className='search-item-img' alt=''></img>
+                            <div className='search-item-info'>
+                                <p className='search-item-name'>{item.name}</p>
+                                <p className='search-item-price'>{formatNumber(item?.price ? item.price : item.newPrice )}</p>
+                            </div>
+                        </li>
+                        ))}
+                    </ul>
+                </div>
+                }
                 <span
                 onClick={()=>handleSearchItem()}
                 className='search-icon'>
@@ -67,7 +89,8 @@ const Header = ({cartItems,isLogin,updateIsLogin,updateSearchItem}) => {
 const mapStateToProps = (state) => {
     return {
       cartItems: state.cartReducer.cartItems,
-      isLogin : state.cartReducer.isLogin
+      isLogin : state.cartReducer.isLogin,
+      searchItems : state.searchReducer.searchItems
     };
   };
 
