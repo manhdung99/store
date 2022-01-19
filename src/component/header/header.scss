@@ -41,14 +41,23 @@
         background: #fff;
         padding: 0 24px;
         .search-item{
+          padding: 12px 0;
           display: flex;
           border-bottom: solid 1px #ccc;
+          cursor: pointer;
+          &:hover{
+            .search-item-info{
+              .search-item-name{
+                color:#0ca08a ;
+              }
+            }
+          }
           .search-item-img{
-            width: 70px;
-            height: 70px;
-            margin-right: 8px;
+            width: 50px;
+            height: 50px;
           }
           .search-item-info{
+            padding-left: 8px;
             font-size: 15px;
             display: flex;
           flex-direction: column;

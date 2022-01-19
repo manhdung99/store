@@ -15,155 +15,28 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
 import { Slide } from "react-slideshow-image";
-import {
-  previewImage1,
-  previewImage2,
-  previewImage3,
-  previewImage4,
-} from "../../image/index";
 import TextDetail from "./textDetail/textDetail";
 import { connect } from "react-redux";
 
 
 
-const DetailPage = ({addCart}) => {
+const DetailPage = ({addCart,detailItem}) => {
   const [currentPrice, setCurrentPrice] = useState(0);
   const inputVersionRef = useRef([]);
   const inputColorRef = useRef([]);
-  const previewImages = [
-    {
-      url: previewImage1,
-    },
-    {
-      url: previewImage2,
-    },
-    {
-      url: previewImage3,
-    },
-    {
-      url: previewImage4,
-    },
-  ];
   const [colorProduct,setColorProduct] = useState('')
   const [versionProduct,setVerSionProduct] = useState('')
-  const promotions = [
-    "Giảm thêm tới 1.500.000đ khi Thu cũ - Lên đời iPhone 13 Series",
-    "Tặng sim data Mobifone Hera 5G (2.5GB/ngày) ( Chưa bao gồm tháng đầu tiên)- Lưu ý: chỉ mua trực tiếp tại cửa hàng, không áp dụng shop SIS Hà Nội",
-  ];
-  const versions = [
-    {
-      id: 1,
-      data: "128GB",
-      price: "29990000",
-    },
-    {
-      id: 2,
-      data: "256GB",
-      price: "32590000",
-    },
-    {
-      id: 3,
-      data: "512GB",
-      price: "37790000",
-    },
-    {
-      id: 4,
-      data: "1TB",
-      price: "42990000",
-    },
-  ];
-  const [colors, setColor] = useState([
-    {
-      color: "Graphite",
-      price: 29990000,
-    },
-    {
-      color: "Silver",
-      price: 29990000,
-    },
-    {
-      color: "Gold",
-      price: 31990000,
-    },
-    {
-      color: "Sierra Blue",
-      price: 30990000,
-    },
-  ]);
-  const versionsColor = [
-    [
-      {
-        color: "Graphite",
-        price: 29990000,
-      },
-      {
-        color: "Silver",
-        price: 29990000,
-      },
-      {
-        color: "Gold",
-        price: 31990000,
-      },
-      {
-        color: "Sierra Blue",
-        price: 30990000,
-      },
-    ],
-    [
-      {
-        color: "Graphite",
-        price: 32590000,
-      },
-      {
-        color: "Silver",
-        price: 33990000,
-      },
-      {
-        color: "Gold",
-        price: 33990000,
-      },
-      {
-        color: "Sierra Blue",
-        price: 34990000,
-      },
-    ],
-    [
-      {
-        color: "Graphite",
-        price: 37790000,
-      },
-      {
-        color: "Silver",
-        price: 36990000,
-      },
-      {
-        color: "Gold",
-        price: 37990000,
-      },
-      {
-        color: "Sierra Blue",
-        price: 37990000,
-      },
-    ],
-    [
-      {
-        color: "Graphite",
-        price: 42990000,
-      },
-      {
-        color: "Silver",
-        price: 39990000,
-      },
-      {
-        color: "Gold",
-        price: 40990000,
-      },
-      {
-        color: "Sierra Blue",
-        price: 39990000,
-      },
-    ],
-  ];
+  const [currentImage,setCurrentImage] = useState(0)
+  const [colors, setColor] = useState(detailItem.versionsColor[0]);
+
+
+  useEffect(()=>{
+    setColor(detailItem.versionsColor[0])
+    inputVersionRef.current[0].checked = true;
+    inputColorRef.current[0].checked = true;
+    setCurrentPrice(detailItem.versions[0].price)
+  },[detailItem])
+
   const citys = [
     "Hà Nội",
     "Thành Phố HCM",
@@ -189,56 +62,67 @@ const DetailPage = ({addCart}) => {
     "12 Điện Biên Phủ, Hà Nội",
     "Số 20 Khu 7, Thị trấn Trạm Trôi, Huyện Hoài Đức, Hà Nội",
   ];
-  const product = {
-    id:10,
-    productName:
-      "Điện thoại di động Apple iPhone 13 Pro Max - 256GB - Chính hãng VN/A",
-  };
   const formatNumber = (num) => {
     return num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,");
   };
-
   const handleUpdatePrice = (id) => {
-    setColor(versionsColor[id - 1]);
-    setCurrentPrice(versionsColor[id - 1][0].price);
+    setColor(detailItem.versionsColor[id - 1]);
+    setCurrentPrice(detailItem.versionsColor[id - 1][0].price);
+    inputColorRef.current[0].checked = true;
+    let colorNumber = 0;
+    let versionNumber = 0;
+    for(let i =0;i<inputVersionRef.current.length;i++){
+      if(inputVersionRef.current[i].checked === true){
+        setVerSionProduct(inputVersionRef.current[i].nextSibling.innerText);  
+        versionNumber = i ;
+      }
+    }
+    for(let i =0;i<inputColorRef.current.length;i++){
+      if(inputColorRef.current[i].checked === true){
+        setColorProduct(inputColorRef.current[i].nextSibling.innerText);  
+        colorNumber = i;
+        setCurrentImage(i)
+      }
+    }
+    detailItem.id = (colorNumber+1)* 27 + (versionNumber +1)*13;
   };
-  const handleUpdateCurrentPrice = (price) =>{
-    setCurrentPrice(price)
-  }
   useEffect(() => {
     inputVersionRef.current[0].checked = true;
     inputColorRef.current[0].checked = true;
   }, []);
-  useEffect(() =>{
-    let versionNumber = 0;
-    let colorNumber = 0;
-    for(let i =0;i<inputColorRef.current.length;i++){
-      if(inputColorRef.current[i].checked === true){
-        setColorProduct(inputColorRef.current[i].nextSibling.innerText);  
-        versionNumber =i+2;  
-      }
-    }
-    for(let i =0;i<inputColorRef.current.length;i++){
-      if(inputVersionRef.current[i].checked === true){
-        setVerSionProduct(inputVersionRef.current[i].nextSibling.innerText);    
-        colorNumber =i+2;
-      }
-    }
-    product.id = versionNumber*7 + colorNumber*3;
-  })
-  
+
   const handleAddCart = () => {
     addCart({
-      id: product.id,
-      price: currentPrice > 0 ? currentPrice : versions[0].price,
-      productName: product.productName,
-      url: previewImage1,
-      promotion:promotions,
-      color:colorProduct,
-      memory : versionProduct,
+      id: detailItem.id,
+      price: currentPrice > 0 ? currentPrice : detailItem.versions[0].price,
+      productName: detailItem.name,
+      url: detailItem.previewImages[currentImage].url,
+      promotion:detailItem.promotion,
+      color:colorProduct === '' ?colors[0].color : colorProduct ,
+      memory : versionProduct === '' ? detailItem.versions[0].data : versionProduct ,
       count:1
     });
   };
+
+  const hanleUpdateColor = (price) =>{
+    let colorNumber = 0;
+    let versionNumber = 0;
+    setCurrentPrice(price);
+    for(let i =0;i<inputVersionRef.current.length;i++){
+      if(inputVersionRef.current[i].checked === true){
+        setVerSionProduct(inputVersionRef.current[i].nextSibling.innerText);  
+        versionNumber = i ;
+      }
+    }
+    for(let i =0;i<inputColorRef.current.length;i++){
+      if(inputColorRef.current[i].checked === true){
+        setColorProduct(inputColorRef.current[i].nextSibling.innerText);  
+        colorNumber = i;
+        setCurrentImage(i)
+      }
+    }
+    detailItem.id = (colorNumber+1)* 27 + (versionNumber +1)*13;
+  }
   return (
     <div className="detail-page">
       <Header />
@@ -272,14 +156,14 @@ const DetailPage = ({addCart}) => {
           </li>
         </Link>
         <Link className="item-element-link" to="">
-          <li className="item-element">{product.productName}</li>
+          <li className="item-element">{detailItem.name}</li>
         </Link>
       </ul>
-      <p className="product-name">{product.productName}</p>
+      <p className="product-name">{detailItem.name}</p>
       <div className="product-detail-container">
         <div className="slide-container detail">
           <Slide>
-            {previewImages.map((previewImage, index) => (
+            {detailItem.previewImages.map((previewImage, index) => (
               <div className="each-slide" key={index}>
                 <Link to={"/store/" + index}>
                   <img
@@ -298,7 +182,7 @@ const DetailPage = ({addCart}) => {
             <strong>
               {currentPrice > 0
                 ? formatNumber(currentPrice)
-                : formatNumber(versions[0].price)}{" "}
+                : formatNumber(detailItem.versions[0].price)}
               ₫
             </strong>
             <i> | Giá đã bao gồm 10% VAT</i>
@@ -306,7 +190,7 @@ const DetailPage = ({addCart}) => {
           <div className="product-option version">
             <label className="product-option-title">Lựa chọn phiên bản</label>
             <div className="options">
-              {versions.map(
+              {detailItem.versions.map(
                 (version, index) => (
                   <label
                     key={version.id}
@@ -327,8 +211,7 @@ const DetailPage = ({addCart}) => {
                       {formatNumber(version.price)} đ
                     </span>
                   </label>
-                ),
-                []
+                )
               )}
             </div>
           </div>
@@ -340,7 +223,7 @@ const DetailPage = ({addCart}) => {
                   <label
                     key={index}
                     className="option-item"
-                    onClick={()=>handleUpdateCurrentPrice(color.price)}
+                    onClick={()=>hanleUpdateColor(color.price)}
                   >
                     <div className="capacity-wrap">
                       <input
@@ -364,7 +247,7 @@ const DetailPage = ({addCart}) => {
           <div className="product-promotion">
             <p className="product-promotion-title">khuyến mãi</p>
             <ul className="product-promotion-list">
-              {promotions.map((promotion, index) => (
+              {detailItem.promotion.map((promotion, index) => (
                 <li key={index} className="product-promotion-item">
                   <span className="bag">KM1</span>
                   <span className="content">{promotion} -</span>
@@ -414,9 +297,7 @@ const DetailPage = ({addCart}) => {
                       <li key={index} className="city-item">
                         {city}
                       </li>
-                    ),
-                    []
-                  )}
+                    ))}
                 </ul>
               </div>
             </div>
@@ -442,10 +323,15 @@ const DetailPage = ({addCart}) => {
     </div>
   );
 }
+const mapStateToProps = (state) => {
+  return {
+    detailItem: state.searchReducer.detailItem
+  };
+};
 const mapDispatchToProps = (dispatch) => {
   return {
     addCart: (cartItem) => dispatch({ type:"ADD_CART",payload : cartItem })
   };
 };
 
-export default connect(null, mapDispatchToProps)(DetailPage);
+export default connect(mapStateToProps, mapDispatchToProps)(DetailPage);
