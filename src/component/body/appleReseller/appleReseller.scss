@@ -137,3 +137,26 @@
     }
   }
 }
+
+@media all and (max-width: 1350px) {
+  .home-product {
+    margin-top: 60px;
+    .home-product-body {
+      .product-list {
+        .product-item {
+          .product-item-price {
+            .product-item-new-price {
+              font-size: 14px;
+            }
+            .product-item-old-price {
+              font-size: 12px;
+            }
+          }
+          .note-content {
+            font-size: 12px;
+          }
+        }
+      }
+    }
+  }
+}

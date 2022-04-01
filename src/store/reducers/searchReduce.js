@@ -13,9 +13,12 @@ import {
 } from "../../image/index";
 const initState = {
   searchItems: [],
+  isShow: true,
   items: [
     {
       id: 10,
+      type: "phone/Điện Thoại/Dien Thoai",
+      creator: "apple",
       url: iphone13promax256,
       name: "Apple iPhone 13 Promax - 256GB - Chính hãng VN/A",
       content: "Giảm thêm tới 1.500.000đ khi Thu cũ - Lên đời iPhone 13 Series",
@@ -138,6 +141,8 @@ const initState = {
     },
     {
       id: 11,
+      type: "phone/Điện Thoại/Dien Thoai",
+      creator: "apple",
       url: iphone11,
       name: "Apple iPhone 11 - 64GB - Chính hãng VN/A",
       content: "Giảm thêm tới 1.500.000đ khi Thu cũ - Lên đời iPhone 13 Series",
@@ -260,6 +265,8 @@ const initState = {
     },
     {
       id: 12,
+      type: "phone/Điện Thoại/Dien Thoai",
+      creator: "apple",
       url: iphone12,
       name: "Apple iPhone 12 - 64GB - Chính hãng VN/A",
       content: "Giảm thêm tới 1.500.000đ khi Thu cũ - Lên đời iPhone 13 Series",
@@ -382,6 +389,8 @@ const initState = {
     },
     {
       id: 13,
+      type: "phone/Điện Thoại/Dien Thoai",
+      creator: "apple",
       url: iphone13promax,
       name: "Apple iPhone 13 Promax - 64GB - Chính hãng VN/A",
       content: "Giảm thêm tới 1.500.000đ khi Thu cũ - Lên đời iPhone 13 Series",
@@ -504,6 +513,8 @@ const initState = {
     },
     {
       id: 14,
+      type: "phone/Điện Thoại/Dien Thoai",
+      creator: "apple",
       url: iphone12mini,
       name: "Apple iPhone 12 mini - 64GB - Chính hãng VN/A",
       content: "Giảm thêm tới 1.500.000đ khi Thu cũ - Lên đời iPhone 13 Series",
@@ -626,6 +637,8 @@ const initState = {
     },
     {
       id: 15,
+      type: "phone/Điện Thoại/Dien Thoai",
+      creator: "apple",
       url: iphone13promax256,
       name: "Apple iPhone 13 Promax - 256GB - Chính hãng VN/A",
       content: "Giảm thêm tới 1.500.000đ khi Thu cũ - Lên đời iPhone 13 Series",
@@ -748,6 +761,8 @@ const initState = {
     },
     {
       id: 16,
+      type: "phone/Điện Thoại/Dien Thoai",
+      creator: "apple",
       url: iphone11,
       name: "Apple iPhone 11 - 64GB - Chính hãng VN/A",
       content: "Giảm thêm tới 1.500.000đ khi Thu cũ - Lên đời iPhone 13 Series",
@@ -870,7 +885,9 @@ const initState = {
     },
     {
       id: 17,
+      type: "phone/Điện Thoại/Dien Thoai",
       url: iphone12,
+      creator: "apple",
       name: "Apple iPhone 12 - 64GB - Chính hãng VN/A",
       content: "Giảm thêm tới 1.500.000đ khi Thu cũ - Lên đời iPhone 13 Series",
       oldPrice: 20990000,
@@ -992,6 +1009,8 @@ const initState = {
     },
     {
       id: 18,
+      type: "phone/Điện Thoại/Dien Thoai",
+      creator: "apple",
       url: iphone13promax,
       name: "Apple iPhone 13 Promax - 64GB - Chính hãng VN/A",
       content: "Giảm thêm tới 1.500.000đ khi Thu cũ - Lên đời iPhone 13 Series",
@@ -1114,6 +1133,8 @@ const initState = {
     },
     {
       id: 19,
+      type: "phone/Điện Thoại/Dien Thoai",
+      creator: "apple",
       url: iphone12mini,
       name: "Apple iPhone 12 mini - 64GB - Chính hãng VN/A",
       content: "Giảm thêm tới 1.500.000đ khi Thu cũ - Lên đời iPhone 13 Series",
@@ -1237,6 +1258,7 @@ const initState = {
   ],
   detailItem: {
     id: 10,
+    type: "phone/Điện Thoại/Dien Thoai",
     url: iphone13promax256,
     name: "Điện thoại di động Apple iPhone 13 Pro Max - 256GB - Chính hãng VN/A",
     content: "Giảm thêm tới 1.500.000đ khi Thu cũ - Lên đời iPhone 13 Series",
@@ -1368,7 +1390,11 @@ const searchReducer = (state = initState, action) => {
         newData = [];
       } else {
         newData = initState.items.map((item) => {
-          return item.name.toUpperCase().includes(searchValue) ? item : null;
+          return item.name.toUpperCase().includes(searchValue) ||
+                 item.type.toUpperCase().includes(searchValue) ||
+                 item.creator.toUpperCase().includes(searchValue)
+            ? item
+            : null;
         });
       }
       let newItems = [...newData];

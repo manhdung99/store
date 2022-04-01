@@ -129,3 +129,14 @@
   }
 }
 }
+
+@media all and (max-width: 1350px) {
+  .topnav{
+    max-width: 1024px;
+    .nav-list{
+      .nav-item.active{
+        margin: 10px 8px 6px 8px;
+      }
+    }
+  }
+}

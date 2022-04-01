@@ -12,6 +12,7 @@ import { useEffect,useState } from 'react'
 const Header = ({cartItems,isLogin,updateIsLogin,updateSearchItem,searchItems,moveToDetailPage}) => {
     
     const [inputValue,setInputValue] = useState('')
+    const [isShow,setIsShow] = useState(true)
     const history = useHistory()
     useEffect(()=>{
         if(isLogin === false){
@@ -19,6 +20,13 @@ const Header = ({cartItems,isLogin,updateIsLogin,updateSearchItem,searchItems,mo
         }
     // eslint-disable-next-line react-hooks/exhaustive-deps
     },[])
+    useEffect(()=>{
+        if(inputValue===''){
+            setIsShow(false);
+        }else{
+            setIsShow(true);
+        }
+    },[inputValue])
     const handleUpdateLogin = () => {
             if(isLogin === true){
                 localStorage.setItem('isLogin',false)
@@ -29,10 +37,10 @@ const Header = ({cartItems,isLogin,updateIsLogin,updateSearchItem,searchItems,mo
         setInputValue(e.target.value)
         updateSearchItem(e.target.value)
     }
-
     const handleSearchItem = () =>{
-        updateSearchItem(inputValue);
-        history.push('/store/search') 
+            updateSearchItem(inputValue);
+            history.push('/store/search') 
+
     }
 
     const formatNumber = (num) => {
@@ -44,9 +52,14 @@ const Header = ({cartItems,isLogin,updateIsLogin,updateSearchItem,searchItems,mo
         history.push('/store/product/' + item.id)
         updateSearchItem('')
     }
+    const handleKeyDown = (e) =>{
+        if(e.key === 'Enter'){
+            handleSearchItem();
+            setInputValue('');
+        }
+    }
     return (
         <div className='header'>
-
         <div className='container'>
             <div className='logo-wrap'>
             <Link to="/store/"><img className='logo-img' src = {logo} alt= "logo"/></Link>
@@ -54,8 +67,10 @@ const Header = ({cartItems,isLogin,updateIsLogin,updateSearchItem,searchItems,mo
             <div className='search-content'>
                 <input className='search-input' value={inputValue}
                 onChange={(e) => handleUpdateValue(e)}
-                type= 'text' placeholder='Tìm kiếm theo tên sản phẩm' />
-                {searchItems.length > 0 &&
+                type= 'text' placeholder='Tìm kiếm sản phẩm'
+                onKeyDown={handleKeyDown}
+                />
+                {isShow && searchItems.length > 0 &&
                 <div className='search-items'>
                     <ul className='search-list'>
                         {searchItems.map((item,index)=>(
